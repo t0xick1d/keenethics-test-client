@@ -1,0 +1,10 @@
+@import './vars.scss';
+
+.app {
+ min-width: 100%;
+ @extend %display-center;
+ color: $text-main-color;
+ font-family: $main-fonts;
+ letter-spacing: 0.04em;
+ text-align: center;
+}
