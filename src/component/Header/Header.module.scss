@@ -1,0 +1,15 @@
+@import '/src/vars.scss';
+.container{ 
+ min-width: 100%;
+ background-color: $background-main ;
+ height: 42px;
+ display: flex;
+ align-items: center;
+ justify-content:flex-start;
+}
+.title{ 
+ font-family: 'Saira Stencil One', sans-serif;
+ margin-left: 16px;
+ color: rgba(232, 232, 232, 1);
+ font-size: 24px;
+}

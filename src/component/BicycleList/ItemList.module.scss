@@ -1,0 +1,23 @@
+.container{ 
+ max-width: 100%;
+ height: 83px;
+ outline: 1px solid rgba(196, 196, 196, 1);
+ margin: 12px 9px;
+ border-radius: 10px;
+ position: relative;
+ font-size: 14px;
+ text-transform: uppercase;
+ text-align: start;
+ padding: 12px 18px 0px;
+}
+
+.statusPriceCont{ 
+ display: flex;
+ justify-content: space-between;
+}
+
+.svgDelete{ 
+ position: absolute;
+ top: 12px;
+ right: 12px;
+}

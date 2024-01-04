@@ -10,9 +10,16 @@ function App() {
   return (
     <div className={s.app}>
       <Header />
-      <BicycleList />
-      <BicycleForm />
-      <Statistics />
+      <div className={s.mainContainer}>
+        <div className={`${s.section}  ${s.sectionFirs}`}>
+          <BicycleList />
+        </div>
+        <div className={`${s.section}  ${s.sectionSecond}`}>
+          <BicycleForm />
+          <Statistics />
+        </div>
+      </div>
+
       <Footer />
     </div>
   );

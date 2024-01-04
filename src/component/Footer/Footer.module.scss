@@ -1,0 +1,18 @@
+@import '/src/vars.scss';
+.container{ 
+ min-width: 100%;
+ background-color: $background-main ;
+ height: 42px;
+ display: flex;
+ align-items: center;
+ justify-content:flex-end;
+}
+.title{ 
+ font-weight: 400;
+ margin-right: 10px;
+ color: rgba(255, 255, 255, 1);
+ font-size: 20px;
+ & span{ 
+  color: rgba(203, 202, 202, 1);
+ }
+}
