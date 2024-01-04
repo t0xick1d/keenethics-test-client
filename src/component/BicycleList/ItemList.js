@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as DeleteSvg } from './Group.svg';
 import s from './ItemList.module.scss';
 
-const ItemList = ({ item }) => {
+const ItemList = ({ item, deleteBicycle }) => {
   const { _id, name, color, price, status, type } = item;
 
   const colorOutline = status => {
@@ -33,7 +33,7 @@ const ItemList = ({ item }) => {
         </p>
         <p>{price} UAH/hr.</p>
       </div>
-      <DeleteSvg className={s.svgDelete} />
+      <DeleteSvg className={s.svgDelete} onClick={() => deleteBicycle(_id)} />
     </div>
   );
 };

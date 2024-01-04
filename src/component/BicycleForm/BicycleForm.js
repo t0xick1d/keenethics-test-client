@@ -1,18 +1,18 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCreateBicycleMutation } from '../../redux-store/bicycle/bicycleApi';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import s from './BicycleForm.module.scss';
 
 const BicycleForm = () => {
-  const dispatch = useDispatch();
+  const [createNewBicycle] = useCreateBicycleMutation();
 
   const inputName = [
-    { name: 'Name', type: 'text' },
-    { name: 'Type', type: 'text' },
-    { name: 'Color', type: 'text' },
-    { name: 'Wheel size', type: 'number' },
-    { name: 'Price', type: 'number' },
+    { name: 'name', type: 'text' },
+    { name: 'type', type: 'text' },
+    { name: 'color', type: 'text' },
+    { name: 'wheelSize', type: 'number' },
+    { name: 'price', type: 'number' },
     { name: 'ID', type: 'text' },
   ];
 
@@ -21,7 +21,7 @@ const BicycleForm = () => {
       name: '',
       type: '',
       color: '',
-      wheelsize: '',
+      wheelSize: '',
       price: '',
       description: '',
     },
@@ -35,14 +35,19 @@ const BicycleForm = () => {
       color: Yup.string()
         .min(5, 'Must be 5 characters or more')
         .required('Required'),
-      wheelsize: Yup.number().required('Required'),
+      wheelSize: Yup.number().required('Required'),
       price: Yup.number().required('Required'),
       description: Yup.string()
         .min(5, 'Must be 5 characters or more')
         .required('Required'),
     }),
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
+      createNewBicycle(values)
+        .unwrap()
+        .then(() => {})
+        .then(error => {
+          console.log(error);
+        });
       resetForm();
     },
   });
@@ -62,7 +67,7 @@ const BicycleForm = () => {
                 placeholder={e.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.nickName}
+                value={formik.values[e.name]}
               />
             );
           })}
@@ -72,17 +77,19 @@ const BicycleForm = () => {
           style={{
             width: '96%',
           }}
-          id={'descriptiom'}
-          type={'text'}
-          name={'descriptiom'}
-          placeholder={'Descriptiom'}
+          id="description"
+          type="text"
+          name="description"
+          placeholder="Description"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.nickName}
+          value={formik.values.description}
         />
         <div className={s.buttonContainer}>
           <button type="submit">Save</button>
-          <button>Clear</button>
+          <button type="button" onClick={() => formik.resetForm()}>
+            Clear
+          </button>
         </div>
       </form>
     </div>

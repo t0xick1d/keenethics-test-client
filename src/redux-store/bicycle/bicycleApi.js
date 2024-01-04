@@ -7,14 +7,31 @@ export const bicycleApi = createApi({
   }),
   endpoints: builder => ({
     getBicycle: builder.query({
-      query(params) {
-        return {
-          url: `bicycle/`,
-          method: 'GET',
-        };
-      },
+      query: () => `bicycle/`,
+      method: 'GET',
+      providesTags: ['Bicycle'],
+    }),
+
+    createBicycle: builder.mutation({
+      query: payload => ({
+        url: 'bicycle/',
+        method: 'POST',
+        body: payload,
+      }),
+      invalidatesTags: ['Bicycle'],
+    }),
+    deleteBicycle: builder.mutation({
+      query: id => ({
+        url: `bicycle/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Bicycle'],
     }),
   }),
 });
 
-export const { useGetBicycleQuery } = bicycleApi;
+export const {
+  useGetBicycleQuery,
+  useCreateBicycleMutation,
+  useDeleteBicycleMutation,
+} = bicycleApi;

@@ -6,8 +6,10 @@ export const store = configureStore({
   reducer: {
     [bicycleApi.reducerPath]: bicycleApi.reducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(bicycleApi.middleware),
+  middleware: getDefaultMiddleware => [
+    ...getDefaultMiddleware(),
+    bicycleApi.middleware,
+  ],
 });
 
 setupListeners(store.dispatch);
