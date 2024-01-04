@@ -12,6 +12,9 @@ const BicycleList = () => {
   if (isLoading) {
     return <Spinner />;
   }
+   if (error) {
+     return <div> {error} </div>;
+   }
   if (!isLoading) {
     return (
       <div>
@@ -23,9 +26,7 @@ const BicycleList = () => {
       </div>
     );
   }
-  if (error) {
-    return <div> {error} </div>;
-  }
+
 };
 
 export default BicycleList;
