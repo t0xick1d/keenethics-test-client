@@ -1,9 +1,12 @@
 import React from 'react';
 import { ReactComponent as DeleteSvg } from './Group.svg';
+import { useUpdateStatusBicycleMutation } from '../../redux-store/bicycle/bicycleApi';
 import s from './ItemList.module.scss';
+import DatalistInput from 'react-datalist-input';
 
 const ItemList = ({ item, deleteBicycle }) => {
   const { _id, name, color, price, status, type } = item;
+  const [updateStatusBicycle] = useUpdateStatusBicycleMutation();
 
   const colorOutline = status => {
     if (status === 'available') {
@@ -28,9 +31,19 @@ const ItemList = ({ item, deleteBicycle }) => {
       </h3>
       <p>ID: {_id}</p>
       <div className={s.statusPriceCont}>
-        <p>
-          Status: <span>{status}</span>
-        </p>
+        <div className={s.contStatusDataList}>
+          <p>Status:</p>
+          <DatalistInput
+            className={s.dataList}
+            placeholder={status}
+            onSelect={item => updateStatusBicycle({ _id, item })}
+            items={[
+              { id: 'available', value: 'Available' },
+              { id: 'unavailable', value: 'Unavailable' },
+              { id: 'busy', value: 'Busy' },
+            ]}
+          />
+        </div>
         <p>{price} UAH/hr.</p>
       </div>
       <DeleteSvg className={s.svgDelete} onClick={() => deleteBicycle(_id)} />

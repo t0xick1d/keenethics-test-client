@@ -20,6 +20,18 @@ export const bicycleApi = createApi({
       }),
       invalidatesTags: ['Bicycle'],
     }),
+    updateStatusBicycle: builder.mutation({
+      query: ({ _id, item }) => {
+        console.log(_id);
+        console.log(item);
+        return {
+          url: `bicycle/${_id}/update`,
+          method: 'PATCH',
+          body: { status: item.id },
+        };
+      },
+      invalidatesTags: ['Bicycle'],
+    }),
     deleteBicycle: builder.mutation({
       query: id => ({
         url: `bicycle/${id}`,
@@ -33,5 +45,6 @@ export const bicycleApi = createApi({
 export const {
   useGetBicycleQuery,
   useCreateBicycleMutation,
+  useUpdateStatusBicycleMutation,
   useDeleteBicycleMutation,
 } = bicycleApi;
